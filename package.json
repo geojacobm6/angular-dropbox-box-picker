@@ -1,0 +1,7 @@
+{
+"name": "angular-dropbox-picker",
+"version": "0.0.1",
+"description": "An AngularJs directive that interact with the Dropbox Picker",
+"author": "Geo Jacob <geojacobm6@gmail.com> (http://www.geomanthra.com)",
+"devDependencies": { }
+}
