@@ -9,111 +9,48 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
-  <body>
-    <section class="page-header">
-      <h1 class="project-name">Angular-dropbox-box-picker</h1>
-      <h2 class="project-tagline">A simple and cool angular directive which interacts with box and dropbox file pickers</h2>
-      <a href="https://github.com/geojacobm6/angular-dropbox-box-picker" class="btn">View on GitHub</a>
-      <a href="https://github.com/geojacobm6/angular-dropbox-box-picker/zipball/master" class="btn">Download .zip</a>
-      <a href="https://github.com/geojacobm6/angular-dropbox-box-picker/tarball/master" class="btn">Download .tar.gz</a>
-    </section>
+  <body ng-app="DropboxControllers" ng-controller="DropBoxCtrl">
+    <div>
+        <div class="col-sm-4">
+            <img src="images/box-dropbox1.jpg" class="img-responsive">
+        </div>
+        <hr/>
+        <div class="col-sm-8">
+            <div class="col-sm-4 center-block">
+                <p><a class="btn btn-primary btn-block" href="javascript:;" drop-box-picker dbpicker-files="dpfiles">Dropbox Picker</a></p>
+            </div>
+            <div class="col-sm-4 center-block">
+                <p><a class="btn btn-primary btn-block" href="javascript:;" box-picker boxpicker-files="boxfiles">Box Picker</a></p>
+            </div>
+            <div class="col-sm-4 center-block">
+                <p><a class="btn btn-primary btn-block">Fork me</a></p>
+            </div>
+        </div>
+        <div class="container col-sm-12">
+            <div class="row show-grid" ng-switch="dpfiles.length > 0 || boxfiles.length > 0">
+                <div ng-switch-when="true">
+                    <div class="col-sm-4" ng-repeat="file in dpfiles">
+                        <a href="{{ file.link }}" target="_blank"><img src="images/file1.png" class="img-responsive img-thumbnail"> {{ file.name }}</a>
+                        <button type="button" class="close" ng-click="remove($index)"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    </div>
+                    <div class="col-sm-4" ng-repeat="file in boxfiles">
+                        <a href="{{ file.url }}" target="_blank"><img src="images/file1.png" class="img-responsive img-thumbnail"> {{ file.name }}</a>
+                        <button type="button" class="close" ng-click="removeboxfiles($index)"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <section class="main-content">
-      <h1>
-<a id="angular-dropbox-box-picker" class="anchor" href="#angular-dropbox-box-picker" aria-hidden="true"><span class="octicon octicon-link"></span></a>angular-dropbox-box-picker</h1>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://app.box.com/js/static/select.js"></script>
+    <script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="opsuezjazxy8x2q"></script>
+    <script src="app.js"></script>
+    <script src="dropbox-picker.min.js"></script>
 
-<p>A simple and cool angular directive which interacts with box and dropbox file pickers</p>
-
-<h1>
-<a id="demo" class="anchor" href="#demo" aria-hidden="true"><span class="octicon octicon-link"></span></a>Demo</h1>
-
-<p><a href="http://geojacobm6.github.io/angular-dropbox-box-picker/">http://geojacobm6.github.io/angular-dropbox-box-picker/</a></p>
-
-<h1>
-<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h1>
-
-<p>Download <a href="https://github.com/geojacobm6/angular-dropbox-box-picker/archive/master.zip">https://github.com/geojacobm6/angular-dropbox-box-picker/archive/master.zip</a></p>
-
-<h1>
-<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h1>
-
-<ol>
-<li>
-<p>Include script in html</p>
-
-<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>dropbox-picker.min.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</pre></div>
-
-<p>For Dropbox:</p>
-
-<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text/javascript<span class="pl-pds">"</span></span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>https://www.dropbox.com/static/api/2/dropins.js<span class="pl-pds">"</span></span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>dropboxjs<span class="pl-pds">"</span></span>  <span class="pl-e">data-app-key</span>=<span class="pl-s"><span class="pl-pds">"</span>APP_KEY<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</pre></div>
-
-<p>Don't forgot ot replace APP_KEY with appkey which get from dropbox app console    <a href="https://www.dropbox.com/developers/apps">https://www.dropbox.com/developers/apps</a>
-  For Box:</p>
-
-<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text/javascript<span class="pl-pds">"</span></span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>https://app.box.com/js/static/select.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</pre></div>
-</li>
-<li>
-<p>Include the dropbox-picker as a dependency for your app</p>
-
-<p>angular.module('myApp', ['dropbox-picker'])</p>
-</li>
-<li>
-<p>Configuration</p>
-
-<p>for more details about options got <a href="https://www.dropbox.com/developers/dropins/chooser/js">https://www.dropbox.com/developers/dropins/chooser/js</a> and      <a href="https://developers.box.com/the-box-file-picker/">https://developers.box.com/the-box-file-picker/</a></p>
-
-<pre><code> angular.module('DropboxControllers', ['dropbox-picker'])
-
-  .config(['DropBoxSettingsProvider', function(DropBoxSettingsProvider) {
-
-    // Configure the options
-      DropBoxSettingsProvider.configure({
-          linkType: 'preview',//dropbox link type
-          multiselect: true,//dropbox multiselect
-          extensions: ['.pdf', '.doc', '.docx'],//dropbox file extensions
-          box_clientId: 'tdjpulviw9wzj20gd1t8rlh93vpvvh4m',// box CLient Id
-          box_linkType: 'shared',//box link type
-          box_multiselect: 'true'//box multiselect
-        });
-  }])
-</code></pre>
-</li>
-<li>
-<p>Create scope to handle choosed files</p>
-
-<p>.controller('DropBoxCtrl', ['$scope', 'DropBoxSettings', function($scope, DropBoxSettings) {</p>
-
-<pre><code>$scope.dpfiles = []; // dropbox files will be here
-
-$scope.boxfiles = []; // box files will be here
-</code></pre>
-
-<p>}]);   </p>
-</li>
-<li>
-<p>Add the directive to your HTML element</p>
-
-<p>Dropbox:</p>
-
-<pre><code>  &lt;a href="javascript:;" drop-box-picker dbpicker-files="dpfiles"&gt;Dropbox Picker&lt;/a&gt;
-</code></pre>
-
-<p>Box:</p>
-
-<pre><code>  &lt;a href="javascript:;" box-picker boxpicker-files="boxfiles"&gt;Box Picker&lt;/a&gt;
-</code></pre>
-</li>
-<li><p>Done.</p></li>
-</ol>
-
-      <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/geojacobm6/angular-dropbox-box-picker">Angular-dropbox-box-picker</a> is maintained by <a href="https://github.com/geojacobm6">geojacobm6</a>.</span>
-
-      
-      </footer>
-
-    </section>
-
-  
   </body>
 </html>
