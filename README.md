@@ -22,15 +22,18 @@ Usage
    ```html
   <script src="dropbox-picker.min.js"></script>
   ```
-    For Dropbox:
+  
+For Dropbox:
   
    ```
   <script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs"  data-app-key="APP_KEY"></script>
   ```
   
-    Don't forgot ot replace APP_KEY with appkey which get from dropbox app console    https://www.dropbox.com/developers/apps
-    For Box:
-    
+ Don't forgot ot replace APP_KEY with appkey which get from dropbox app console  https://www.dropbox.com/developers/apps
+ 
+For Box:
+
+ 
    ```
   <script type="text/javascript" src="https://app.box.com/js/static/select.js"></script>
   ```
@@ -38,8 +41,11 @@ Usage
 
  2. Include the dropbox-picker as a dependency for your app
 
+       ```
       angular.module('myApp', ['dropbox-picker'])
-
+       ```
+       
+       
  3. Configuration
  
   for more details about options got https://www.dropbox.com/developers/dropins/chooser/js and      https://developers.box.com/the-box-file-picker/
