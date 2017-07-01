@@ -23,12 +23,15 @@ Usage
   <script src="dropbox-picker.min.js"></script>
   ```
     For Dropbox:
-    ```html
+  
+   ```
   <script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs"  data-app-key="APP_KEY"></script>
   ```
+  
     Don't forgot ot replace APP_KEY with appkey which get from dropbox app console    https://www.dropbox.com/developers/apps
     For Box:
-   ```html
+    
+   ```
   <script type="text/javascript" src="https://app.box.com/js/static/select.js"></script>
   ```
     
@@ -40,6 +43,7 @@ Usage
  3. Configuration
  
   for more details about options got https://www.dropbox.com/developers/dropins/chooser/js and      https://developers.box.com/the-box-file-picker/
+
 
        angular.module('DropboxControllers', ['dropbox-picker'])
     
@@ -58,12 +62,14 @@ Usage
         
  4.  Create scope to handle choosed files
  
+  ```
       .controller('DropBoxCtrl', ['$scope', 'DropBoxSettings', function($scope, DropBoxSettings) {
    
         $scope.dpfiles = []; // dropbox files will be here
         
         $scope.boxfiles = []; // box files will be here
       }]);   
+ ```
 
  5. Add the directive to your HTML element
  
